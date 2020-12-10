@@ -1,0 +1,19 @@
+{
+  "name": "covid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/src/js.app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qwefix/covid-2019-dasboard.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qwefix/covid-2019-dasboard/issues"
+  },
+  "homepage": "https://github.com/qwefix/covid-2019-dasboard#readme"
+}

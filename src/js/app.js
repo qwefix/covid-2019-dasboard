@@ -1,3 +1,4 @@
 import '../css/style.css';
-import addTableSwitchListeners from './table-js/switches';
-addTableSwitchListeners();
+import setupTable from './table-js/main';
+
+setupTable();

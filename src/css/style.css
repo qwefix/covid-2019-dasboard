@@ -84,21 +84,24 @@ html{
     background-color: #555;
     align-items: center;
     border-radius: 2rem;
-    padding: 1rem;
+    padding: .5rem;
     width: 10rem;
     height: 2rem;
 }
 #table .settings .switch .circle{
-    transition: all 0.5s;
+    transition: all 0.3s;
     width: 2rem;
     height: 2rem;
     background-color: #fff;
     border-radius: 1rem;
 }
+#table .settings .switch .circle.on{
+    background-color: #333;
+}
 #table .settings .switch p{
+    transition: all 0.3s;
     width: 0;
     user-select: none;
-    transition: all 0.5s;
     font-size: 1.3rem;
     text-align: center;
     overflow: hidden;

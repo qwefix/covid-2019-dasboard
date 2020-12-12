@@ -1,5 +1,5 @@
-import addTableSwitchListeners from './table-js/switches';
+import addTableSwitchListeners from './switches';
 function setupTable(){
     addTableSwitchListeners();
 }
-export default setupTable();
+export default setupTable;

@@ -94,25 +94,25 @@ html{
 }
 
 
-.slider {
+#list .slider {
     display: flex;
     flex-direction: column;
 }
 
-.slides-wrapper .slide {
+#list .slides-wrapper .slide {
     margin: 1rem auto;
     transition: 2s ease-in-out;
 }
 
 
 
-.navigation {
+#list .navigation {
     display: flex;
     justify-content: space-between;
     align-items:center;
 }
 
-button {
+#list button {
     color: #000;
     background-color: transparent;
     width: 30px;
@@ -123,11 +123,11 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+#list button:hover {
     background-color: gray;
 }
 
-.number {
+#list .number {
     display: flex;
     font-size: 1.5rem;
 }

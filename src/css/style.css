@@ -23,7 +23,7 @@ html{
     color: #fff;
 
 }
-#main>section{
+#main section{
     background-color: #666;
     border: solid red .1rem;
     border-radius: 1rem;
@@ -40,8 +40,75 @@ html{
 #map{
     grid-area: map;
 }
-#table{
+#main #table{
     grid-area: tbl;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem .5rem;
+}
+#table header{
+    font-weight: 500;
+    font-size: 3.5rem;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+#table th {
+    font-weight: 500;
+    font-size: 2rem;
+    text-align: center;
+}
+#table td {
+    width: 33%;
+    font-weight: 600;
+    font-size: 2.5rem;
+    text-align: center;
+}
+#table td.deaths{
+    color: red;
+}
+#table td.rec{
+    color: rgb(5, 223, 5);
+}
+#table .settings{
+    display: flex;
+    justify-content: space-evenly;
+}
+#table .settings .switch{
+    cursor: pointer;
+    transition: all 0.5s;
+    display: flex;
+    background-color: #555;
+    align-items: center;
+    border-radius: 2rem;
+    padding: .5rem;
+    width: 10rem;
+    height: 2rem;
+}
+#table .settings .switch .circle{
+    transition: all 0.3s;
+    width: 2rem;
+    height: 2rem;
+    background-color: #fff;
+    border-radius: 1rem;
+}
+#table .settings .switch .circle.on{
+    background-color: #333;
+}
+#table .settings .switch p{
+    transition: all 0.3s;
+    width: 0;
+    user-select: none;
+    font-size: 1.3rem;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 1.7rem;
+}
+#table .settings .switch p.on{
+    width: 8rem;
 }
 #list{
     grid-area: list;

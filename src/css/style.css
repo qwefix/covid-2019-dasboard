@@ -112,7 +112,93 @@ html{
 }
 #list{
     grid-area: list;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+#list input {
+    border-radius: 1rem;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 1rem;
+    width: 90%;
+    margin: 0 auto;
+}
+
+
+#list p {
+  font-weight: 500;
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+#list table {
+    margin: 0 auto;
+}
+
+#list th {
+    font-weight: 500;
+    font-size: 1.8rem;
+    text-align: center;
+    min-width: 10rem;
+    padding: 0.5rem;
+}
+
+#list td {
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid #d6d6d6;
+}
+#list td.deaths{
+    color: red;
+}
+
+#list td.rec{
+    color: rgb(5, 223, 5);
+}
+
+
+#list .slider {
+    display: flex;
+    flex-direction: column;
+}
+
+#list .slides-wrapper .slide {
+    margin: 1rem auto;
+    transition: 2s ease-in-out;
+}
+
+
+
+#list .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+}
+
+#list button {
+    color: #000;
+    background-color: transparent;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#list button:hover {
+    background-color: gray;
+}
+
+#list .number {
+    display: flex;
+    font-size: 1.5rem;
+}
+
 #graph{
     grid-area: graph;
 }

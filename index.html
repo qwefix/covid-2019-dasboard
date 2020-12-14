@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="main">
+        <header id="head">
+            <p>Covid-19 Dasboard</p>
+        </header>
+        <section id="global-cases"></section>
+        <section id="map">maps</section>
+        
+        <section id="table">
+            <p class="table-name">Global cases:</p>
+            <div class="wrapper">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>Cases</th>
+                            <th>Recovered</th>
+                            <th>Deaths</th>
+                        </tr>
+                        <tr class='output'>
+                            <td>100</td>
+                            <td class="rec">99</td>
+                            <td class="deaths">1</td>
+                        </tr>
+                    </tbody>
+                </table>        
+            </div>
+           <div class="buttons">
+                <button id="button-global">All time</button>
+               <button id="button-last">LastDay</button>
+               <button id="button-statistic">Statistic</button>
+           </div>
+            <div class="settings">
+                <div class="switch">
+                    <p class="on">All time</p>
+                    <div class="circle"></div>
+                    <p>Last Day</p>
+                </div>
+                <div class="switch">
+                    <p class="on">Absolute</p>
+                    <div class="circle"></div>
+                    <p>/100K</p>
+                </div>
+            </div>
+        </section>
+
+
+
+        <section id="list">
+            <div class="search">
+                <form id="search-form">
+                   <input type="text" id="search" placeholder="Search for a Country">  
+                </form>
+               
+            </div>
+            <div class="slider">
+                <div class="slides-wrapper">
+                    <div class="slide">
+                        <p>Cases</p></header>
+                        <table>
+                            <tbody class="tbody">
+                                
+                            </tbody>
+                        </table>  
+                    </div>
+                    <div class="slide">
+                        <p>Deaths</p></header>
+                        <table>
+                            <tbody class="tbody">
+                            </tbody>
+                        </table>  
+                    </div>
+                    <div class="slide">
+                        <p>Recovered</p></header>
+                        <table>
+                            <tbody class="tbody">
+                
+                            </tbody>
+                        </table>  
+                    </div>                
+                </div>
+            <div class="navigation">
+                <button class="arrow-left">🠈</button>
+                <div class="number">
+                    <div class="current"></div>
+                    <div>/</div>
+                <div class="total"></div>
+                </div>
+                <button class="arrow-right">🠊</button>
+            </div> 
+        </section>
+        <section id="graph">graph</section>  
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

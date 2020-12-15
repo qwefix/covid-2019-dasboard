@@ -22,7 +22,6 @@ class TableSwitcher{
         }else{
             this.tableSwitchesPositions.absolute = !this.tableSwitchesPositions.absolute;
         }
-        console.log(this.tableSwitchesPositions)
     }
 }
 const tableSwitchers = new TableSwitcher();

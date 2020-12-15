@@ -13,7 +13,9 @@ class CovidTable{
             countryName: document.querySelector('#table header p'),
         };
         this.switches=switches;
+        console.log(this.switches.switchers)
         this.setupTableData();
+        this.switches.switchers.forEach(v=>v.addEventListener('click',()=>setTimeout(()=> this.renderData(this.countryObj.Country) , 50)))
     }
     setupTableData() {
         fetch("https://api.covid19api.com/summary")
@@ -38,7 +40,7 @@ class CovidTable{
                 this.worldData.population=res;
                 console.log(this)
             })
-            .then(()=>this.renderData("Macao, SAR China"))
+            .then(()=>this.renderData("Belarus"))
     };
 
     renderData(countryName='Global'){
@@ -71,7 +73,7 @@ class CovidTable{
             outputObj.rec *=100000 / countryObj.population;
             outputObj.deaths *=100000 / countryObj.population;
         }
-        console.log(countryObj)
+        // console.log(countryObj)
         console.log(outputObj)        
     }
     

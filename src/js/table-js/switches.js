@@ -5,7 +5,6 @@ class TableSwitcher{
             absolute:true,
         };
         this.switchers = Array.from(document.querySelectorAll('#table .settings div.switch'));
-        // document.querySelectorAll('#table .settings').forEach((a)=>a.addEventListener('click',this.switcherForTable.bind(this)));
     }
 
     switcherForTable(evt){

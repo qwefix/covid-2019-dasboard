@@ -28,7 +28,7 @@ class CovidTable{
                 this.table.cases.textContent=res.Global.TotalConfirmed;
                 this.table.deaths.textContent=res.Global.TotalDeaths;
                 this.table.rec.textContent=res.Global.TotalRecovered;
-            }).then(()=>fetch("https://restcountries.eu/rest/v2/all?fields=name;population"))
+            }).then(()=>fetch("https://restcountries.eu/rest/v2/all?fields=population;alpha2Code"))
             .then(res => {
             if (res.status !== 200) {
                 return Promise.reject(res);
@@ -38,7 +38,7 @@ class CovidTable{
                 this.worldData.population=res;
                 console.log(this)
             })
-            .then(()=>this.renderData('Belarus'))
+            .then(()=>this.renderData("Macao, SAR China"))
     };
 
     renderData(countryName='Global'){
@@ -51,7 +51,7 @@ class CovidTable{
             countryObj.population = 7000000000;
         }else{
             countryObj = this.worldData.Countries.find(a=>a.Country === countryName);
-            countryObj.population = this.worldData.population.find(a=>a.name === countryName).population;
+            countryObj.population = this.worldData.population.find(a=>a.alpha2Code === countryObj.CountryCode).population;
         };
         this.countryObj = countryObj;
 

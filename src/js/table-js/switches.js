@@ -1,9 +1,29 @@
-function switcherForTable(evt){
-    const switcher = evt.target.closest('div.switch');
-    if (switcher === null) return;
-    switcher.querySelectorAll('*').forEach(v=>v.classList.toggle('on'));
+class TableSwitcher{
+    constructor(){
+        this.tableSwitchesPositions={
+            allTime:true,
+            absolute:true,
+        };
+        this.switchers = Array.from(document.querySelectorAll('#table .settings div.switch'));
+        document.querySelectorAll('#table .settings').forEach((a)=>a.addEventListener('click',this.switcherForTable.bind(this)));
+    }
+
+    switcherForTable(evt){
+        const switcher = evt.target.closest('div.switch');
+        const i =Array.from(document.querySelectorAll('#table .settings div.switch')).indexOf(switcher);
+        this.switchBool(i);
+        if (switcher === null) return;
+        switcher.querySelectorAll('*').forEach(v=>v.classList.toggle('on'));
+    }
+
+    switchBool(i) {
+        if(i===0){
+            this.tableSwitchesPositions.allTime = !this.tableSwitchesPositions.allTime;
+        }else{
+            this.tableSwitchesPositions.absolute = !this.tableSwitchesPositions.absolute;
+        }
+        console.log(this.tableSwitchesPositions)
+    }
 }
-function addTableSwitchListeners(){
-    document.querySelectorAll('#table .settings').forEach(a=>a.addEventListener('click',switcherForTable))
-}
-export default addTableSwitchListeners;
+const tableSwitchers = new TableSwitcher();
+export default tableSwitchers

@@ -192,6 +192,20 @@ html{
     
 }
 
+#list .slide::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#list .slide::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+#list .slide::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
 #list .slides-wrapper .slide {
     margin: 1rem auto;
     transition: 2s ease-in-out;

@@ -37,10 +37,10 @@ class CovidList {
                     this.setListInfo(this.cases, 0, 'cases');
                     break;
                 case 'Deaths':
-                    this.setListInfo(this.deaths, 1, 'rec');
+                    this.setListInfo(this.deaths, 1, 'daeths');
                     break;
                 case 'Recovered':
-                    this.setListInfo(this.recover, 2, 'deaths');
+                    this.setListInfo(this.recover, 2, 'rec');
                     break;
             }
         });

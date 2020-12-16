@@ -14,7 +14,7 @@ class GlobalCases {
                 return res.json();
             })
             .then((res) => {
-               this.globalInfo = res.Global.TotalConfirmed;
+               this.globalInfo = res.Global.TotalConfirmed.toLocaleString('en', { maximumFractionDigits: 0 });
                this.getGlobalInfo(this.globalInfo);
             })     
     };

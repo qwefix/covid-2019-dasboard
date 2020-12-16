@@ -30,10 +30,8 @@ class CovidTable{
             })
             .then((res) => {
                 this.worldData=res;
-                this.table.cases.textContent=res.Global.TotalConfirmed;
-                this.table.deaths.textContent=res.Global.TotalDeaths;
-                this.table.rec.textContent=res.Global.TotalRecovered;
-            }).then(()=>fetch("https://restcountries.eu/rest/v2/all?fields=population;alpha2Code"))
+            })
+            .then(()=>fetch("https://restcountries.eu/rest/v2/all?fields=population;alpha2Code"))
             .then(res => {
             if (res.status !== 200) {
                 return Promise.reject(res);
@@ -43,15 +41,17 @@ class CovidTable{
                 this.worldData.population=res;
                 console.log(this)
             })
+            .then(()=>this.renderData('Global'))
     };
     
     renderData(countryName='Global'){
         this.Country=countryName;
-        let countryObj;
+        let countryObj={};
         let isAllTime = this.switches.tableSwitchesPositions.allTime;
         let isAbsolute = this.switches.tableSwitchesPositions.absolute;
         let outputObj ={};
         if(countryName==='Global'){
+            console.log
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{

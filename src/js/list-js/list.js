@@ -36,7 +36,6 @@ class CovidList {
             this.deaths.push([country.Country, country.CountryCode, country.TotalDeaths]);
             this.recover.push([country.Country, country.CountryCode,country.TotalRecovered]);
         });
-        console.log(this.cases, this.deaths, this.recover)
         this.listParagraph.forEach(p => {
             switch(p.textContent) {
                 case 'Cases':

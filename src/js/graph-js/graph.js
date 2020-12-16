@@ -3,8 +3,8 @@ import urls from '../apiUrlConfig/apiUrl';
 
 class Graph {
     constructor(){
-        this.canvas = document.getElementById('graphCanvas');
-        this.input = {
+        this.lastCountry = 'Global',
+        this.defaultInput = {
             type: 'bar',
             data: {
                 labels: ['1', '2', '3', '4', '5', '6'],
@@ -36,7 +36,7 @@ class Graph {
                 }
             }
         };
-        this.chartJS = new Chart(this.canvas, this.input);
+        this.createProps();
         this.setup();
     }
 
@@ -50,37 +50,41 @@ class Graph {
             })
             .then((res) => {
                 this.worldData ={ 
-                    lables: Object.entries(res.cases).map(a=>a[0]),
+                    labels: Object.entries(res.cases).map(a=>a[0]),
                     cases: Object.entries(res.cases).map(a=>a[1]),
                     deaths: Object.entries(res.deaths).map(a=>a[1]),
                     recovered: Object.entries(res.recovered).map(a=>a[1]),
                 }
-                this.renderGlobal();
+                this.renderGlobal('recovered');
                 console.log(this.worldData)
             })
     }
-    renderGlobal(){
-        this.input.data.labels = this.worldData.lables;
-        let colors = ['grey','red','green'];
-        this.input.data.datasets=[];
-        ['cases','deaths','recovered'].forEach((a,i)=>{
-            this.input.data.datasets.push({
-                label: a,
-                data: this.worldData[a],
-                backgroundColor: colors[i],
-                barPercentage: 1.3,
-            })
-        })
-        this.chartJS.update();
+    renderGlobal(typeOfGraphStr='cases'){
+        let colors = {
+            cases: 'black',
+            deaths: 'red',
+            recovered: 'green',
+        }
+        this.input.data.labels = this.worldData.labels;
+        this.input.data.datasets=[{
+            label: typeOfGraphStr,
+            data: this.worldData[typeOfGraphStr],
+            backgroundColor: colors[typeOfGraphStr],
+            barPercentage: 1,
+        }],
+
+        this.chart.update();
         console.log(this.input);
+    }
+    createProps() {
+        this.canvas = document.querySelector('#graph canvas');
+        this.input = {};
+        Object.assign(this.input, this.defaultInput);
+        this.chart = new Chart(this.canvas, this.input);
     }
 }
 
 
+let graph = new Graph()
 
-
-function setupGraph(){
-    console.log('hello');
-    let graph = new Graph()
-}
-export default setupGraph
+export default graph

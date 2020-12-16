@@ -200,10 +200,11 @@ html{
 }
 
 #graph{
-    /* overflow: hidden; */
     padding: .5rem;
+    max-height: 500px;
     grid-area: graph;
 }
-#graph #graphCanvas{
+#graph canvas{
     background-color: #ddd;
+    height: 80px;
 }

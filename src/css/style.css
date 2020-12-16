@@ -49,7 +49,24 @@ html{
     grid-area: map;
     color: #666;
 }
-#main #table{
+.popup {
+    position: absolute;
+    background: #222;
+    width: 20rem;
+    height: 10rem;
+    right: 0;
+    padding: 2rem;
+    border-radius: 1rem;
+    z-index: 5;
+}
+.popup-country {
+    font-weight: 700;
+    font-size: 2rem;
+}
+.popup-content {
+    font-size: 1.5rem;
+}
+#table{
     grid-area: tbl;
     display: flex;
     flex-direction: column;

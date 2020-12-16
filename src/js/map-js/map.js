@@ -14,5 +14,5 @@ export default function setupMap() {
     map.addLayer(layer);
     
     const marker = new Marker(map);
-    marker.loadMarker();
+    //marker.loadMarker();
 }

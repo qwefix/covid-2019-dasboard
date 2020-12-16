@@ -3,15 +3,17 @@
 //https://api.covid19api.com/summary
 
 import tableSwitchers from './switches';
-
+import urls from '../apiUrlConfig/apiUrl';
 class CovidTable{
-    constructor(switches){
+    constructor(switches, urls){
         this.table={
             cases: document.querySelector('#table td.cases'),
             deaths: document.querySelector('#table td.deaths'),
             rec: document.querySelector('#table td.rec'),
             countryName: document.querySelector('#table header p'),
         };
+        this.covid2019Api = urls.covid19api;
+        this.populationApi = urls.populationInfoApi;
         this.switches=switches;
         this.setupTableData();
         this.Country='Global';
@@ -21,7 +23,7 @@ class CovidTable{
         })) 
     }
     setupTableData() {
-        this.promice = fetch("https://api.covid19api.com/summary")
+        this.promice = fetch(`${this.covid2019Api}/summary`)
             .then(res => {
                 if (res.status !== 200) {
                     return Promise.reject(res);
@@ -31,7 +33,7 @@ class CovidTable{
             .then((res) => {
                 this.worldData=res;
             })
-            .then(()=>fetch("https://restcountries.eu/rest/v2/all?fields=population;alpha2Code"))
+            .then(()=>fetch(`${this.populationApi}`))
             .then(res => {
             if (res.status !== 200) {
                 return Promise.reject(res);
@@ -104,6 +106,6 @@ class CovidTable{
         return Math.round(number/divider.num*10)/10 + divider.str
     }
 }
-const table = new CovidTable(tableSwitchers);
+const table = new CovidTable(tableSwitchers, urls);
 
 export default table

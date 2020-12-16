@@ -6,17 +6,6 @@ class Graph {
         this.lastCountry = 'Global',
         this.defaultInput = {
             type: 'bar',
-            data: {
-                labels: ['1', '2', '3', '4', '5', '6'],
-                datasets: [
-                    {
-                        label: 'deaths',
-                        data: [12, 19, 3, 5, 2, 3],
-                        backgroundColor: 'red',
-                        barPercentage: 1.3,
-                    },
-                ]
-            },
             options: {
                 legend: {
                     display: false
@@ -26,11 +15,17 @@ class Graph {
                         ticks: {
                             display: false,
                             beginAtZero: true
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
                         }
                     }],
                     xAxes: [{
                         ticks: {
                             display: false
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, 0)",
                         }
                     }]
                 }
@@ -70,7 +65,7 @@ class Graph {
             label: typeOfGraphStr,
             data: this.worldData[typeOfGraphStr],
             backgroundColor: colors[typeOfGraphStr],
-            barPercentage: 1,
+            barPercentage: 1.2,
         }],
 
         this.chart.update();

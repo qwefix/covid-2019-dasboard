@@ -39,6 +39,7 @@ html{
 }
 #map{
     grid-area: map;
+    color: #666;
 }
 #table{
     grid-area: tbl;

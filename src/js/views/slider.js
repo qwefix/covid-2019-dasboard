@@ -33,10 +33,10 @@ export default class Slider {
 
     render() {
         this.arrowLeft.addEventListener('click', () => {
-            this.presSlide(-1)
+            this.presSlide(1)
         });
         this.arrowRight.addEventListener('click', () => {
-            this.presSlide(1)
+            this.presSlide(-1)
         })
         this.showSlides(this.slideIndex);
     }

@@ -4,6 +4,7 @@ export default function setupMap() {
     const mapId = document.querySelector('#map');
     const mapOptions = {
         center: [32.526955973553164, 23.047893209259385],
+        minZoom: 1,
         zoom: 2
     }
 

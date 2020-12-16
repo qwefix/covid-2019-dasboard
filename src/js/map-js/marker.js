@@ -1,15 +1,18 @@
 import {coordinates} from './coordinates';
 
+const data = [];
 export default class Marker {
     constructor (map){
         this.map = map;
-        this.data = [];
         this.getData();
+        this.popup = document.querySelector('.popup');
+        this.popupCountry = document.querySelector('.popup-country');
+        this.popupContent = document.querySelector('.popup-content');
     }
 
     loadMarker() {
-        coordinates.forEach(element => {
-            const circleRadius = 200000/100;
+        data.forEach(element => {
+            const circleRadius = element.TotalConfirmed / 20;
             const circleOption = {
                 color: 'red',
                 fillOpacity: 100
@@ -20,11 +23,18 @@ export default class Marker {
             circle.addTo(this.map);
 
             circle.addEventListener('mouseover', () => {
-                circle.bindPopup(`${element.name}`).openPopup();
+                //circle.bindPopup(`${element.Country}<br>Total confirmed: ${element.TotalConfirmed}`).openPopup();
+                this.popup.classList.add('popup');
+                this.popupCountry.innerHTML = element.Country;
+                this.popupContent.innerHTML = `Total confirmed: ${element.TotalConfirmed}`;
+            });
+
+            circle.addEventListener('mouseout', () => {
+                this.popup.classList.remove('popup');
             });
 
             circle.addEventListener('click', () => {
-               
+               alert(element.Country);
             });
         });
     }
@@ -38,17 +48,19 @@ export default class Marker {
                 return res.json();
             })
             .then(res => {
-                this.data.push(...res.Countries);
-                console.log( this.data);
-                console.log(typeof this.data);
+                data.push(...res.Countries);
             })
             .then(() => {
-                this.data.forEach((el) => {
-                    if (el.CountryCode === "AF") {
-                        el["lat"] = 11;
-                    }
+                data.forEach((el) => {
+                    coordinates.forEach(elem => {
+                        if (el.CountryCode === elem.country) {
+                            el.lat = +elem.lat;
+                            el.lon = +elem.lon;
+                        }
+                    });
                 });
+                console.log(data.length);
             })
-        
+            .then(() => {this.loadMarker();})
     }
 }

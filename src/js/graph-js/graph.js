@@ -1,37 +1,19 @@
 import Chart from 'chart.js';
 import urls from '../apiUrlConfig/apiUrl';
+import defImport from './defImport';
+import GraphSlider from './slider';
 
 class Graph {
     constructor(){
+        this.slider = new GraphSlider(this.renderBySlider,this)
+        this.canvas = document.querySelector('#graph canvas');
         this.lastCountry = 'Global',
-        this.defaultInput = {
-            type: 'bar',
-            options: {
-                legend: {
-                    display: false
-                 },
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            display: false,
-                            beginAtZero: true
-                        },
-                        gridLines: {
-                            color: "rgba(0, 0, 0, 0)",
-                        }
-                    }],
-                    xAxes: [{
-                        ticks: {
-                            display: false
-                        },
-                        gridLines: {
-                            color: "rgba(0, 0, 0, 0)",
-                        }
-                    }]
-                }
-            }
-        };
-        this.createProps();
+        
+        this.defaultInput = defImport;
+        this.input = {};
+        Object.assign(this.input, this.defaultInput);
+
+        this.chart = new Chart(this.canvas, this.input);
         this.setup();
     }
 
@@ -50,11 +32,12 @@ class Graph {
                     deaths: Object.entries(res.deaths).map(a=>a[1]),
                     recovered: Object.entries(res.recovered).map(a=>a[1]),
                 }
-                this.renderGlobal('recovered');
-                console.log(this.worldData)
+                this.renderGlobal();
             })
     }
-    renderGlobal(typeOfGraphStr='cases'){
+
+    renderGlobal(){
+        const typeOfGraphStr = this.slider.val;
         let colors = {
             cases: 'black',
             deaths: 'red',
@@ -69,16 +52,16 @@ class Graph {
         }],
 
         this.chart.update();
-        console.log(this.input);
     }
-    createProps() {
-        this.canvas = document.querySelector('#graph canvas');
-        this.input = {};
-        Object.assign(this.input, this.defaultInput);
-        this.chart = new Chart(this.canvas, this.input);
+    render(country=this.lastCountry){
+        if(country.toLowerCase() === 'global'){
+            this.renderGlobal()
+        }
+    }
+    renderBySlider(){
+        this.parent.render()
     }
 }
-
 
 let graph = new Graph()
 

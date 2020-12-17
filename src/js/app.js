@@ -1,5 +1,6 @@
 import '../css/style.css';
 import table from './table-js/table';
+import graph from './graph-js/graph';
 import list from './list-js/list';
 import globalCases from './globalCases-js/globalCases';
 import selectCountry from './selectCountry';
@@ -25,3 +26,4 @@ window.addEventListener('DOMContentLoaded', () => {
         selectCountry(searchText);
     });
 });
+

@@ -41,7 +41,6 @@ class CovidTable{
             return res.json();
             }).then((res) => {
                 this.worldData.population=res;
-                console.log(this)
             })
             .then(()=>this.renderData('Global'))
     };

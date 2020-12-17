@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "axios": "^0.21.0",
+    "chart.js": "^2.9.4",
     "materialize-css": "^1.0.0-rc.2"
   },
   "homepage": "https://github.com/qwefix/covid-2019-dasboard#readme"

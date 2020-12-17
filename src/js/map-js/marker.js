@@ -1,6 +1,13 @@
 import {coordinates} from './coordinates';
 
 const data = [];
+let markerGroup = null;
+let circleArray = [];
+const circleOption = {
+    color: 'red',
+    fillOpacity: 1,
+    strokeOpacity: 100
+}
 export default class Marker {
     constructor (map){
         this.map = map;
@@ -11,32 +18,42 @@ export default class Marker {
     }
 
     loadMarker() {
+        this.removeMarker();
+
         data.forEach(element => {
             const circleRadius = element.TotalConfirmed / 20;
-            const circleOption = {
-                color: 'red',
-                fillOpacity: 100
-            }
 
             const circle = new L.circle([element.lat, element.lon], circleRadius, circleOption);
             
-            circle.addTo(this.map);
+            //circle.addTo(this.map);
+            
+            circleArray.push(circle);
+            //markerGroup = L.layerGroup(circle);
 
             circle.addEventListener('mouseover', () => {
                 //circle.bindPopup(`${element.Country}<br>Total confirmed: ${element.TotalConfirmed}`).openPopup();
-                this.popup.classList.add('popup');
+                this.popup.style.display = 'block';
                 this.popupCountry.innerHTML = element.Country;
                 this.popupContent.innerHTML = `Total confirmed: ${element.TotalConfirmed}`;
             });
 
             circle.addEventListener('mouseout', () => {
-                this.popup.classList.remove('popup');
+                this.popup.style.display = 'none';
             });
 
             circle.addEventListener('click', () => {
                alert(element.Country);
             });
         });
+        markerGroup = L.layerGroup([...circleArray]);
+        markerGroup.addTo(this.map);
+        circleArray = [];
+    }
+
+    removeMarker() {
+        if (markerGroup) {
+            markerGroup.clearLayers();
+        }
     }
 
     getData() {
@@ -59,8 +76,16 @@ export default class Marker {
                         }
                     });
                 });
-                console.log(data.length);
             })
             .then(() => {this.loadMarker();})
+    }
+
+    loadOption(number) {
+        switch (number) {
+            case 0: circleOption.color = 'red'; break;
+            case 1: circleOption.color = 'rgb(31, 83, 255)'; break;
+            case 2: circleOption.color = 'black'; break;
+        }
+        this.loadMarker();
     }
 }

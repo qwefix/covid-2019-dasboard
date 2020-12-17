@@ -41,7 +41,8 @@ html{
     grid-area: map;
     color: #666;
 }
-.popup {
+#map>.popup {
+    display: none;
     position: absolute;
     background: #222;
     width: 20rem;
@@ -51,12 +52,21 @@ html{
     border-radius: 1rem;
     z-index: 5;
 }
-.popup-country {
+#map .popup-country {
     font-weight: 700;
     font-size: 2rem;
 }
-.popup-content {
+#map .popup-content {
     font-size: 1.5rem;
+}
+#map>.buttonList {
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+}
+#map>.buttonList>.map-button {
+    width: 15rem;
+    height: 3rem;
 }
 #table{
     grid-area: tbl;

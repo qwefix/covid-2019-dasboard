@@ -36,6 +36,13 @@ html{
 }
 #global-cases{
     grid-area: glc;
+    width: 100%;
+    color:rgb(223, 60, 60);
+    font-size: 3rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px black, 0 0 1px black;
+    text-align: center;
+    cursor: pointer;
 }
 #map{
     grid-area: map;
@@ -66,11 +73,17 @@ html{
     font-size: 2.5rem;
     text-align: center;
 }
+
+#table td.cases{
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
+}
 #table td.deaths{
     color: red;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #table td.rec{
     color: rgb(5, 223, 5);
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #table .settings{
     display: flex;
@@ -128,7 +141,7 @@ html{
 
 
 #list p {
-  font-weight: 500;
+    font-weight: 500;
     font-size: 2.5rem;
     text-align: center;
 }
@@ -141,29 +154,63 @@ html{
     font-weight: 500;
     font-size: 1.8rem;
     text-align: center;
-    min-width: 10rem;
     padding: 0.5rem;
 }
 
 #list td {
+    min-width: 1rem;
     font-weight: 600;
     font-size: 1.5rem;
     text-align: center;
     padding: 0.5rem;
     border-bottom: 1px solid #d6d6d6;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #list td.deaths{
     color: red;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 
 #list td.rec{
     color: rgb(5, 223, 5);
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 
+#list td.cases{
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
+}
+
+#list .target-country {
+    cursor: pointer;
+}
+#list .target-country:hover {
+    background-color: rgb(51, 51, 51, 0.3);
+    border-bottom: 1px solid grey;
+}
 
 #list .slider {
     display: flex;
     flex-direction: column;
+}
+
+#list .slide {
+    overflow-y: scroll;
+    max-height: 40rem;
+    
+}
+
+#list .slide::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#list .slide::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+#list .slide::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 
 #list .slides-wrapper .slide {

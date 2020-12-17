@@ -41,7 +41,6 @@ class CovidTable{
             return res.json();
             }).then((res) => {
                 this.worldData.population=res;
-                console.log(this)
             })
             .then(()=>this.renderData('Global'))
     };
@@ -53,7 +52,6 @@ class CovidTable{
         let isAbsolute = this.switches.tableSwitchesPositions.absolute;
         let outputObj ={};
         if(countryName==='Global'){
-            console.log
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{

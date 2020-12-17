@@ -56,7 +56,6 @@ class Graph {
         this.chart.update();
     }
     render(inputName=this.lastCountry){
-        console.log(inputName)
         let countryName = inputName.toLowerCase().split(' ').filter(v=>v!=='').map(v=>v.trim()).join('-');
         if(countryName =='united-states-of-america'){
             countryName = 'united-states'

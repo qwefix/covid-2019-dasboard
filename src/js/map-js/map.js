@@ -14,5 +14,12 @@ export default function setupMap() {
     map.addLayer(layer);
     
     const marker = new Marker(map);
-    //marker.loadMarker();
+    const button = document.querySelectorAll('.map-button');
+    
+    button[0].addEventListener('click', () => {
+        marker.loadOption(0);
+    });
+    button[1].addEventListener('click', () => {
+        marker.loadOption(1);
+    });
 }

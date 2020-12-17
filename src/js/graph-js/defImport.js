@@ -7,11 +7,11 @@ const defImport = {
         scales: {
             yAxes: [{
                 ticks: {
-                    display: false,
+                    // display: false,
                     beginAtZero: true
                 },
                 gridLines: {
-                    color: "rgba(0, 0, 0, 0)",
+                    // color: "rgba(0, 0, 0, 0)",
                 }
             }],
             xAxes: [{

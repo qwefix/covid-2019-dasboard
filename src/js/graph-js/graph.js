@@ -8,6 +8,7 @@ class Graph {
         this.slider = new GraphSlider(this.renderBySlider,this)
         this.canvas = document.querySelector('#graph canvas');
         this.lastCountry = 'Global',
+        this.countries = {};
         
         this.defaultInput = defImport;
         this.input = {};
@@ -37,6 +38,7 @@ class Graph {
     }
 
     renderGlobal(){
+        this.lastCountry = 'global';
         const typeOfGraphStr = this.slider.val;
         let colors = {
             cases: 'black',
@@ -48,18 +50,60 @@ class Graph {
             label: typeOfGraphStr,
             data: this.worldData[typeOfGraphStr],
             backgroundColor: colors[typeOfGraphStr],
-            barPercentage: 1.2,
+            barPercentage: 1.6,
         }],
 
         this.chart.update();
     }
-    render(country=this.lastCountry){
-        if(country.toLowerCase() === 'global'){
+    render(inputName=this.lastCountry){
+        const countryName = inputName.toLowerCase().split(' ').filter(v=>v!=='').map(v=>v.trim()).join('-');
+        if(countryName === 'global'){
             this.renderGlobal()
+        }else{
+            this.setupCountryName(countryName)
         }
     }
     renderBySlider(){
         this.parent.render()
+    }
+    setupCountryName(countryName){
+        if(this.countries[countryName]==undefined){
+            fetch(`${urls.graphForCountry}${countryName}`)
+            .then(res => {
+                if (res.status !== 200) {
+                    return Promise.reject(res);
+                }
+                return res.json();
+            }).then((res) => {
+                this.countries[countryName] = {
+                    labels: res.map(v=>v.Date.slice(0,10).split('-').join('/')) ,
+                    cases: res.map (v => v.Confirmed),
+                    deaths: res.map (v => v.Deaths),
+                    recovered: res.map (v => v.Recovered),
+                };
+                this.renderCountry(countryName);
+            })
+        }else{
+            this.renderCountry(countryName);
+        }
+    }
+    renderCountry(countryName){
+        this.lastCountry = countryName;
+        const typeOfGraphStr = this.slider.val;
+        let colors = {
+            cases: 'black',
+            deaths: 'red',
+            recovered: 'green',
+        }
+        this.input.data.labels = this.countries[countryName].labels;
+        this.input.data.datasets=[{
+            label: typeOfGraphStr,
+            data: this.countries[countryName][typeOfGraphStr],
+            backgroundColor: colors[typeOfGraphStr],
+            barPercentage: 1.6,
+        }];
+
+        this.chart.update();
     }
 }
 

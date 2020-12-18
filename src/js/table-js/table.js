@@ -80,9 +80,12 @@ class CovidTable{
     }
     renderInTable(obj){
         this.table.countryName.textContent = obj.countryName;
-        this.table.cases.textContent = this.prettyNumber(obj.cases);
-        this.table.deaths.textContent = this.prettyNumber(obj.deaths);
-        this.table.rec.textContent = this.prettyNumber(obj.rec);
+        this.table.cases.textContent = this.round(obj.cases);
+        this.table.deaths.textContent = this.round(obj.deaths);
+        this.table.rec.textContent = this.round(obj.rec);
+    }
+    round(num){
+        return Math.round(num*10)/10
     }
     checkCountryName(name){
         if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name) === undefined) return false;
@@ -93,7 +96,7 @@ class CovidTable{
             num:1,
             str:'',
         }
-        if(number>9999999){
+        if(number>999999){
             divider={
                 num:1000000,
                 str:'M',
@@ -104,7 +107,6 @@ class CovidTable{
                 str:'K'
             }
         }
-
         return Math.round(number/divider.num*10)/10 + divider.str
     }
 }

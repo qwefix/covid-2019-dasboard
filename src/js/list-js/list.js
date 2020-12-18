@@ -58,6 +58,24 @@ class CovidList {
             `
         });
     }
+    prettyNumber(number){
+        let divider={
+            num:1,
+            str:'',
+        }
+        if(number>999999){
+            divider={
+                num:1000000,
+                str:'M',
+            }
+        }else if(number>9999){
+            divider={
+                num:1000,
+                str:'K'
+            }
+        }
+        return Math.round(number/divider.num*10)/10 + divider.str
+    }
 }
 
 const list = new CovidList(slider, urls);

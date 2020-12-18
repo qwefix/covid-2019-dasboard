@@ -58,7 +58,7 @@ class CovidTable{
             countryObj = this.worldData.Countries.find(a=>a.Country.toLowerCase() === countryName);
             countryObj.population = this.worldData.population.find(a=>a.alpha2Code === countryObj.CountryCode).population;
         };
-        outputObj.countryName =  countryObj.Country;
+        outputObj.countryName =  countryObj.Country || 'Global';
         if(isAllTime){
             outputObj.cases = countryObj.TotalConfirmed;
             outputObj.rec = countryObj.TotalRecovered;

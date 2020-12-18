@@ -37,6 +37,3 @@ window.addEventListener('DOMContentLoaded', () => {
    
 });
 setupMap();
-
-
-

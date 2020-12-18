@@ -84,6 +84,10 @@ class CovidTable{
         this.table.deaths.textContent = this.prettyNumber(obj.deaths);
         this.table.rec.textContent = this.prettyNumber(obj.rec);
     }
+    checkCountryName(name){
+        if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name) === undefined) return false;
+        return true
+    }
     prettyNumber(number){
         let divider={
             num:1,

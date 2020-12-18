@@ -19,7 +19,7 @@ class GlobalCases {
             })     
     };
     getGlobalInfo(casesNumber) {
-        this.globalCasesBlock.innerHTML = `Global Situation: ${casesNumber}`;
+        this.globalCasesBlock.innerHTML = `Cases in the world: ${casesNumber}`;
     }
 }
 

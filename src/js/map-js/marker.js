@@ -8,6 +8,7 @@ const circleOption = {
     fillOpacity: 1,
     strokeOpacity: 100
 }
+let radiusInfo, radiusСoefficient;
 export default class Marker {
     constructor (map){
         this.map = map;
@@ -17,11 +18,11 @@ export default class Marker {
         this.popupContent = document.querySelector('.popup-content');
     }
 
-    loadMarker() {
+    loadMarker(radius={content: 'TotalConfirmed', coefficient: 20}) {
         this.removeMarker();
 
         data.forEach(element => {
-            const circleRadius = element.TotalConfirmed / 20;
+            const circleRadius = element[radius.content] / radius.coefficient;
 
             const circle = new L.circle([element.lat, element.lon], circleRadius, circleOption);
             
@@ -82,10 +83,22 @@ export default class Marker {
 
     loadOption(number) {
         switch (number) {
-            case 0: circleOption.color = 'red'; break;
-            case 1: circleOption.color = 'rgb(31, 83, 255)'; break;
+            case 0: { 
+                circleOption.color = 'red'; 
+                radiusInfo = {
+                    content: 'TotalConfirmed',
+                    coefficient: 20
+                }; 
+            } break;
+            case 1: {
+                circleOption.color = 'rgb(31, 83, 255)'; 
+                radiusInfo = {
+                    content: 'TotalDeaths',
+                    coefficient: 0.5
+                };  
+            } break;
             case 2: circleOption.color = 'black'; break;
         }
-        this.loadMarker();
+        this.loadMarker(radiusInfo);
     }
 }

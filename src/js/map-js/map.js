@@ -22,4 +22,7 @@ export default function setupMap() {
     button[1].addEventListener('click', () => {
         marker.loadOption(1);
     });
+    button[2].addEventListener('click', () => {
+        marker.loadOption(2);
+    });
 }

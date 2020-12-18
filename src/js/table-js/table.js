@@ -51,7 +51,7 @@ class CovidTable{
         let isAllTime = this.switches.tableSwitchesPositions.allTime;
         let isAbsolute = this.switches.tableSwitchesPositions.absolute;
         let outputObj ={};
-        if(countryName==='Global'){
+        if(countryName.toLowerCase()==='global'){
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{

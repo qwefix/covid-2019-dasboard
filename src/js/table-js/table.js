@@ -45,13 +45,13 @@ class CovidTable{
             .then(()=>this.renderData('Global'))
     };
     
-    renderData(countryName='Global'){
+    renderData(countryName = 'global'){
         this.Country=countryName;
         let countryObj={};
         let isAllTime = this.switches.tableSwitchesPositions.allTime;
         let isAbsolute = this.switches.tableSwitchesPositions.absolute;
         let outputObj ={};
-        if(countryName.toLowerCase()==='global'){
+        if(countryName.toLowerCase() === 'global'){
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{
@@ -88,7 +88,7 @@ class CovidTable{
         return Math.round(num*10)/10
     }
     checkCountryName(name){
-        if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name) === undefined) return false;
+        if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name || name === 'global') === undefined) return false;
         return true
     }
     prettyNumber(number){

@@ -10,7 +10,7 @@ html{
     min-height: 96vh;
     display: grid;
     grid-template-columns: 1fr 3fr 1.7fr;
-    grid-template-rows: 1fr 2fr 3fr 4fr;
+    grid-template-rows: 0.3fr 2fr 3fr 4fr;
     grid-template-areas: 
         'head head head'
         'glc  map tbl'
@@ -129,7 +129,6 @@ html{
     flex-direction: column;
     align-items: center;
 }
-
 #list input {
     border-radius: 1rem;
     border: 1px solid #ddd;
@@ -138,7 +137,9 @@ html{
     width: 90%;
     margin: 0 auto;
 }
-
+#list input.fail {
+    border: 3px solid red;
+}
 
 #list p {
     font-weight: 500;
@@ -193,32 +194,68 @@ html{
     flex-direction: column;
 }
 
-#list .slide {
-    overflow-y: scroll;
-    max-height: 40rem;
-    
-}
 
-#list .slide::-webkit-scrollbar {
+#list .slide::-webkit-scrollbar,
+#list .autocomplete-items::-webkit-scrollbar {
     width: 12px;
 }
  
-#list .slide::-webkit-scrollbar-track {
+#list .slide::-webkit-scrollbar-track,
+#list .autocomplete-items::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
     border-radius: 10px;
 }
  
-#list .slide::-webkit-scrollbar-thumb {
+#list .slide::-webkit-scrollbar-thumb,
+#list .autocomplete-items::-webkit-scrollbar-thumb {
     border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
-
+#list .slides-wrapper{
+    max-height: 55vh;
+}
 #list .slides-wrapper .slide {
+    overflow-y: scroll;
+    max-height: 98%;
     margin: 1rem auto;
     transition: 2s ease-in-out;
 }
 
+#list .autocomplete {
+    position: relative;
+}
 
+#list .autocomplete .search-button {
+    width: 4rem;
+    height: 3rem;
+    position: absolute;
+    top: .2rem;
+    right: 0;
+    background-color:#fff;
+    color: #fff;
+    cursor: pointer;
+    border:none;
+    outline: none;
+}
+#list .autocomplete .search-button {
+    fill: gray;
+}
+
+#list .autocomplete-items {
+    font-size: 1.6rem;
+    background-color: gray;
+    cursor: pointer;
+    overflow-y: scroll;
+    max-height: 30rem;
+    position: absolute;
+}
+#list .autocomplete-items div {
+    padding: 5px;
+    border: 1px solid #fff;
+    min-width: 15rem;
+}
 
 #list .navigation {
     display: flex;
@@ -226,7 +263,8 @@ html{
     align-items:center;
 }
 
-#list button {
+#list .arrow-left,
+#list .arrow-right {
     color: #000;
     background-color: transparent;
     width: 30px;
@@ -237,7 +275,8 @@ html{
     cursor: pointer;
 }
 
-#list button:hover {
+#list .arrow-left:hover,
+#list .arrow-right:hover {
     background-color: gray;
 }
 
@@ -252,6 +291,7 @@ html{
     grid-area: graph;
 }
 #graph canvas{
+    margin: 1rem auto 0;
     background-color: #ddd;
     height: 80px;
 }

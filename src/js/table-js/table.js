@@ -55,10 +55,10 @@ class CovidTable{
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{
-            countryObj = this.worldData.Countries.find(a=>a.Country === countryName);
+            countryObj = this.worldData.Countries.find(a=>a.Country.toLowerCase() === countryName);
             countryObj.population = this.worldData.population.find(a=>a.alpha2Code === countryObj.CountryCode).population;
         };
-        outputObj.countryName = countryName;
+        outputObj.countryName =  countryObj.Country;
         if(isAllTime){
             outputObj.cases = countryObj.TotalConfirmed;
             outputObj.rec = countryObj.TotalRecovered;
@@ -83,6 +83,10 @@ class CovidTable{
         this.table.cases.textContent = this.prettyNumber(obj.cases);
         this.table.deaths.textContent = this.prettyNumber(obj.deaths);
         this.table.rec.textContent = this.prettyNumber(obj.rec);
+    }
+    checkCountryName(name){
+        if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name) === undefined) return false;
+        return true
     }
     prettyNumber(number){
         let divider={

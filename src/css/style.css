@@ -9,10 +9,10 @@ html{
 #main{
     min-height: 96vh;
     display: grid;
-    grid-template-columns: 1fr 3fr 1.7fr;
-    grid-template-rows: 0.3fr 2fr 3fr 4fr;
+    /* grid-template-columns: 1fr 3fr 1.7fr; */
+    /* grid-template-rows: 0.3fr 2fr 3fr 4fr; */
     grid-template-areas: 
-        'head head head'
+        /* 'head head head' */
         'glc  map tbl'
         'list map tbl'
         'list map graph'
@@ -24,8 +24,8 @@ html{
 
 }
 #main section{
-    background-color: #666;
-    border: solid red .1rem;
+    background-color: #333;
+    /* border: solid red .1rem; */
     border-radius: 1rem;
 }
 #head{
@@ -46,6 +46,7 @@ html{
     align-items: center;
 }
 #map{
+    min-width: 60vw;
     grid-area: map;
     color: #666;
 }
@@ -80,12 +81,12 @@ html{
     grid-area: tbl;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 3rem .5rem;
+    justify-content: space-around;
+    /* padding: 3rem .5rem; */
 }
 #table header{
     font-weight: 500;
-    font-size: 3.5rem;
+    font-size: 5rem;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -93,12 +94,12 @@ html{
 }
 #table th {
     font-weight: 500;
-    font-size: 2.5rem;
+    font-size: 4rem;
     text-align: center;
 }
 #table td {
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 5rem;
     text-align: center;
 }
 
@@ -152,6 +153,7 @@ html{
     width: 8rem;
 }
 #list{
+    min-width: 13vw;
     grid-area: list;
     display: flex;
     flex-direction: column;

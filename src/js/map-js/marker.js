@@ -1,3 +1,4 @@
+import selectCountry from '../selectCountry';
 import {coordinates} from './coordinates';
 
 const data = [];
@@ -42,7 +43,8 @@ export default class Marker {
             });
 
             circle.addEventListener('click', () => {
-               alert(element.Country);
+            //    alert(element.Country);
+               selectCountry(element.Country);
             });
         });
         markerGroup = L.layerGroup([...circleArray]);

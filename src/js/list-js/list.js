@@ -30,7 +30,7 @@ class CovidList {
     getListInfo(data) {
         this.cases = data.map(country => [country.Country, country.CountryCode, country.TotalConfirmed]);
         this.deaths = data.map(country => [country.Country, country.CountryCode, country.TotalDeaths]);
-        this.recover = data.map(country => [country.Country, country.CountryCode,country.TotalRecovered]);
+        this.recover = data.map(country => [country.Country, country.CountryCode, country.TotalRecovered]);
         this.listParagraph.forEach(p => {
             switch(p.textContent) {
                 case 'Cases':
@@ -53,7 +53,7 @@ class CovidList {
             <tr>
                 <td><img src="https://www.countryflags.io/${item[1]}/flat/24.png"></td>
                 <td class="target-country">${item[0]}</td>
-                <td class="${selectorName}">${item[2]}</td>
+                <td class="${selectorName}">${this.prettyNumber(item[2])}</td>
             </tr>
             `
         });

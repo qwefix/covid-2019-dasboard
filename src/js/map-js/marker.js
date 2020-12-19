@@ -18,24 +18,24 @@ export default class Marker {
         this.popupContent = document.querySelector('.popup-content');
     }
 
-    loadMarker() {
+    loadMarker(mapContent={content: 'TotalConfirmed', coefficient: 20, text: 'Total confirmed'}) {
         this.removeMarker();
 
         data.forEach(element => {
-            const circleRadius = element.TotalConfirmed / 20;
+            const circleRadius = element[mapContent.content] / mapContent.coefficient;
 
             const circle = new L.circle([element.lat, element.lon], circleRadius, circleOption);
             
-            //circle.addTo(this.map);
-            
             circleArray.push(circle);
-            //markerGroup = L.layerGroup(circle);
 
             circle.addEventListener('mouseover', () => {
-                //circle.bindPopup(`${element.Country}<br>Total confirmed: ${element.TotalConfirmed}`).openPopup();
                 this.popup.style.display = 'block';
                 this.popupCountry.innerHTML = element.Country;
-                this.popupContent.innerHTML = `Total confirmed: ${element.TotalConfirmed}`;
+                this.popupContent.innerHTML = `
+                    <div>
+                        <p>${mapContent.text}: ${element[mapContent.content]}</p>
+                        ${mapContent.content !== 'TotalConfirmed' ? `<p>Percentage: ${(element[mapContent.content] / element.TotalConfirmed * 100).toFixed(2)}%</p>` : ''}
+                    </div>`;
             });
 
             circle.addEventListener('mouseout', () => {
@@ -43,7 +43,6 @@ export default class Marker {
             });
 
             circle.addEventListener('click', () => {
-            //    alert(element.Country);
                selectCountry(element.Country);
             });
         });
@@ -83,11 +82,33 @@ export default class Marker {
     }
 
     loadOption(number) {
+        let mapContent;
         switch (number) {
-            case 0: circleOption.color = 'red'; break;
-            case 1: circleOption.color = 'rgb(31, 83, 255)'; break;
-            case 2: circleOption.color = 'black'; break;
+            case 0: { 
+                circleOption.color = 'red'; 
+                mapContent = {
+                    content: 'TotalConfirmed',
+                    coefficient: 20,
+                    text: 'Total confirmed'
+                }; 
+            } break;
+            case 1: {
+                circleOption.color = 'green'; 
+                mapContent = {
+                    content: 'TotalRecovered',
+                    coefficient: 15,
+                    text: 'Total recovered'
+                };  
+            } break;
+            case 2: {
+                circleOption.color = 'coral'; 
+                mapContent = {
+                    content: 'TotalDeaths',
+                    coefficient: 0.5,
+                    text: 'Total deaths'
+                };  
+            } break;
         }
-        this.loadMarker();
+        this.loadMarker(mapContent);
     }
 }

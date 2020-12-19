@@ -71,11 +71,20 @@ html{
 #map>.buttonList {
     position: absolute;
     bottom: 0;
+    left: 1rem;
     z-index: 5;
 }
 #map>.buttonList>.map-button {
+    background: #333;
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
     width: 15rem;
     height: 3rem;
+}
+#map>.buttonList>.map-button:hover {
+    background: rgb(67, 67, 67);
 }
 #table{
     grid-area: tbl;

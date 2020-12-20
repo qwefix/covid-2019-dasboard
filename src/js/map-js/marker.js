@@ -42,9 +42,13 @@ export default class Marker {
                 this.popup.style.display = 'none';
             });
 
-            circle.addEventListener('click', () => {
-               selectCountry(element.Country);
+            circle.addEventListener('click', (e) => {
+                selectCountry(element.Country);
+                clickZoom(e);
             });
+            const clickZoom = (e) => {
+                this.map.setView(e.target.getLatLng(),5);
+            }
         });
         markerGroup = L.layerGroup([...circleArray]);
         markerGroup.addTo(this.map);
@@ -110,5 +114,14 @@ export default class Marker {
             } break;
         }
         this.loadMarker(mapContent);
+    }
+    
+    zoomCountry(country) {
+        data.forEach((el) => {
+            if (el.Country === country) {
+                const mk = new L.marker([el.lat, el.lon]);
+                this.map.setView(mk.getLatLng(),4);
+            }
+        });
     }
 }

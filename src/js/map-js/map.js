@@ -25,4 +25,12 @@ export default function setupMap() {
     button[2].addEventListener('click', () => {
         marker.loadOption(2);
     });
+
+    document.addEventListener('click', (event) => {
+        if (event.target.getAttribute('class') === "target-country") {
+            let searchText = event.target.textContent;
+            marker.zoomCountry(searchText);
+        }
+    });
 }
+

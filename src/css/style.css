@@ -421,6 +421,7 @@ html{
 
 /* keyboard */
 .wrapper {
+    z-index: 1000000000000000000;
     width: 90rem;
     height: 60rem;
     margin: 2rem auto;

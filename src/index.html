@@ -8,11 +8,10 @@
 </head>
 <body>
     <main id="main">
-        <header id="head">
+        <!-- <header id="head">
             <p>Covid-19 Dasboard</p>
-        </header>
+        </header> -->
         <section id="global-cases">Loading...</section>
-        <section id="map">maps</section>
          <section id="table">
             <header><p>Global</p></header>
             <table>
@@ -147,7 +146,23 @@
                     <div><p>Recovered</p></div>
                 </div>
             </div>
-        </section>        
+        </section>
+        <section id="map-section">
+            <div id="map"></div>
+            <div class="map-navigation">
+                
+                <div class="buttonList">
+                    <button class="map-button">Cases</button>
+                    <button class="map-button">Recovered</button>
+                    <button class="map-button">Deaths</button>
+                </div>
+                <div class="popup">
+                    <div class="popup-country"></div>
+                    <div class="popup-content"></div>
+                </div>
+            </div>
+            
+        </section>
     </main>
 </body>
 </html>

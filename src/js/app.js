@@ -1,4 +1,5 @@
 import '../css/style.css';
+import setupMap from './map-js/map';
 // import table from './table-js/table';
 // import graph from './graph-js/graph';
 import list from './list-js/list';
@@ -46,4 +47,4 @@ window.addEventListener('DOMContentLoaded', () => {
     });
    
 });
-
+setupMap();

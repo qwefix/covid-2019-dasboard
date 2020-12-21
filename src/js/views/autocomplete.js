@@ -17,7 +17,7 @@ function autocompleteCountries() {
             searchContainer.setAttribute("id", "MyAutocomplete-list");
             searchContainer.setAttribute("class", "autocomplete-items");
             this.parentNode.appendChild(searchContainer);
-            for (let i = 0; i < arr.length; i++) {
+            for (let i = 0; i < arr.length; i += 1) {
                 if (arr[i].substr(0, searchValue.length).toUpperCase() == searchValue.toUpperCase()) {
                 const autocompleteList = document.createElement("div");
                 autocompleteList.innerHTML = `<strong>${arr[i].substr(0, searchValue.length)}</strong>`;
@@ -37,7 +37,7 @@ function autocompleteCountries() {
     function closeAllLists(elem) {
     const searchInput = document.getElementById('search-input');
     const autocompleteItems = document.getElementsByClassName("autocomplete-items");
-        for (let i = 0; i < autocompleteItems.length; i++) {
+        for (let i = 0; i < autocompleteItems.length; i += 1) {
             if (elem !== autocompleteItems[i] && elem !== searchInput) {
                 autocompleteItems[i].parentNode.removeChild(autocompleteItems[i]);
             }

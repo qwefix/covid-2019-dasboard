@@ -12,7 +12,9 @@ html{
     grid-template-areas: 
         'glc  map tbl'
         'list map tbl'
+        'list map tbl'
         'list map graph'
+        'f f f'
     ;
     gap: 1rem;
     background-color: #000;
@@ -265,7 +267,7 @@ html{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
 }
 #list .slides-wrapper{    
-    max-height: 55vh;
+    max-height: 58vh;
 }
 #list .slides-wrapper .slide {
     overflow-y: scroll;
@@ -416,6 +418,33 @@ html{
     justify-content: center;
 }
 
+footer {
+    grid-area: f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .logo-rss {
+    width: 7.4rem;
+    height: 3.1rem;
+    background-color: #fff;
+}
+footer .logo-rss  img{
+    width: 100%;
+}
+footer h2 {
+    font-size: 3rem;
+}
+footer .author {
+    width: 7.4rem;
+    height: 5rem;
+}
+footer .author img {
+    width: 100%;
+}
+
+
 /* keyboard */
 .wrapper {
     z-index: 1000000000000000000;
@@ -438,7 +467,7 @@ html{
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 94%;
     padding: 3%;
     height: 30rem;
@@ -529,13 +558,14 @@ html{
 }
 @media screen and (max-width: 1024px) {
     html{
-        font-size: 7px;
+        font-size: 6px;
     }
     #main{
         grid-template-areas: 
             'glc  map '
             'list map '
             'tbl  graph'
+            'f f'
         ;
     }
     #list .slides-wrapper{    

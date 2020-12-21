@@ -5,7 +5,7 @@ const data = [];
 let markerGroup = null;
 let circleArray = [];
 const circleOption = {
-    color: 'red',
+    color: '#000',
     fillOpacity: 1,
     strokeOpacity: 100
 }
@@ -29,7 +29,7 @@ export default class Marker {
             circleArray.push(circle);
 
             circle.addEventListener('mouseover', () => {
-                this.popup.style.display = 'block';
+                this.popup.style.display = 'flex';
                 this.popupCountry.innerHTML = element.Country;
                 this.popupContent.innerHTML = `
                     <div>
@@ -89,7 +89,7 @@ export default class Marker {
         let mapContent;
         switch (number) {
             case 0: { 
-                circleOption.color = 'red'; 
+                circleOption.color = '#000'; 
                 mapContent = {
                     content: 'TotalConfirmed',
                     coefficient: 20,
@@ -105,7 +105,7 @@ export default class Marker {
                 };  
             } break;
             case 2: {
-                circleOption.color = 'coral'; 
+                circleOption.color = 'red'; 
                 mapContent = {
                     content: 'TotalDeaths',
                     coefficient: 0.5,

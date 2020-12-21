@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Covid-19 dasboard</title>
-    <link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-    <script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 </head>
 <body>
     <main id="main">
@@ -124,17 +124,21 @@
                 </div>
             </div>
         </section>
-        <section id="map">
-            <div class="map-background"></div>
-            <div class="popup">
-                <div class="popup-country"></div>
-                <div class="popup-content"></div>
+        <section id="map-section">
+            <div id="map"></div>
+            <div class="map-navigation">
+                
+                <div class="buttonList">
+                    <button class="map-button">Cases</button>
+                    <button class="map-button">Recovered</button>
+                    <button class="map-button">Deaths</button>
+                </div>
+                <div class="popup">
+                    <div class="popup-country"></div>
+                    <div class="popup-content"></div>
+                </div>
             </div>
-            <div class="buttonList">
-                <button class="map-button">Cases</button>
-                <button class="map-button">Recovered</button>
-                <button class="map-button">Deaths</button>
-            </div>
+            
         </section>
     </main>
 </body>

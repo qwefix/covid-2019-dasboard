@@ -45,37 +45,50 @@ html{
     cursor: pointer;
     align-items: center;
 }
-#map{
+#map-section {
     min-width: 60vw;
     grid-area: map;
+}
+#map{
+    min-width: 60vw;
+    height: 95%;
     color: #666;
 }
-#map>.popup {
+.map-navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+}
+.popup {
     display: none;
-    position: absolute;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background: #222;
-    width: 20rem;
-    height: 10rem;
     right: 0;
-    padding: 2rem;
+    bottom: 0;
+    padding: 0 2rem;
     border-radius: 1rem;
+    height: 100%;
     z-index: 5;
 }
-#map .popup-country {
+.popup-country {
     font-weight: 700;
     font-size: 2rem;
+    margin-right: 2rem;
 }
-#map .popup-content {
+.popup-content {
     font-size: 1.5rem;
 }
-#map>.buttonList {
-    position: absolute;
-    bottom: 0;
-    left: 1rem;
+.buttonList {
+    margin-left: 1rem;
     z-index: 5;
 }
-#map>.buttonList>.map-button {
-    background: #333;
+.buttonList>.map-button {
+    background: rgb(38, 38, 38);
     color: #fff;
     font-size: 1.5rem;
     border: none;
@@ -83,7 +96,7 @@ html{
     width: 15rem;
     height: 3rem;
 }
-#map>.buttonList>.map-button:hover {
+.buttonList>.map-button:hover {
     background: rgb(67, 67, 67);
 }
 #table{

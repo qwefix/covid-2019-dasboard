@@ -1,7 +1,3 @@
-// https://api.covid19api.com/world
-//https://api.covid19api.com/dayone/country/south-africa
-//https://api.covid19api.com/summary
-
 import tableSwitchers from './switches';
 import urls from '../apiUrlConfig/apiUrl';
 class CovidTable{

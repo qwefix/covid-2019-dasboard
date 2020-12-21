@@ -7,12 +7,8 @@ const defImport = {
         scales: {
             yAxes: [{
                 ticks: {
-                    // display: false,
                     beginAtZero: true
                 },
-                gridLines: {
-                    // color: "rgba(0, 0, 0, 0)",
-                }
             }],
             xAxes: [{
                 ticks: {

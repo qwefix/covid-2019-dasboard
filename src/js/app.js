@@ -5,15 +5,22 @@ import list from './list-js/list';
 import globalCases from './globalCases-js/globalCases';
 import selectCountry from './selectCountry';
 import autocompleteCountries from './views/autocomplete';
+import keyboard from './views/keyboard';
 
 window.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchForm = document.getElementById('search-form');
-
+    const showKeyboard = document.querySelector('.keyboard-show');
+   
+    keyboard.init();
     list.setupListData();
     globalCases.setupGlobalCasesData();
     autocompleteCountries();
 
+    showKeyboard.addEventListener('click', () => {
+        const wrapper = document.querySelector('.wrapper');
+        wrapper.classList.toggle('wrapper-hidden');
+    });
     document.addEventListener('click', (event) => {
         const checkCountry = document.querySelectorAll('.target-country');
         if (event.target.getAttribute('class') === "target-country") {

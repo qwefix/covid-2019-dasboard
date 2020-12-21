@@ -1,6 +1,7 @@
 import selectCountry from '../selectCountry';
 import {coordinates} from './coordinates';
 
+var L = window.L;
 const data = [];
 let markerGroup = null;
 let circleArray = [];

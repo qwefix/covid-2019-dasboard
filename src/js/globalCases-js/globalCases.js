@@ -17,7 +17,7 @@ class GlobalCases {
                this.globalInfo = res.Global.TotalConfirmed.toLocaleString('en', { maximumFractionDigits: 0 });
                this.getGlobalInfo(this.globalInfo);
             })     
-    };
+    }
     getGlobalInfo(casesNumber) {
         this.globalCasesBlock.innerHTML = `Cases in the world: ${casesNumber}`;
     }

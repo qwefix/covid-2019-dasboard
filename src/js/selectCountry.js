@@ -6,7 +6,6 @@ export default function selectCountry(input){
     if(table.checkCountryName(countryNameString)){
         table.promiceRender(countryNameString);
         graph.render(countryNameString);
-        console.log(countryNameString);
     }else{
         document.querySelector('#search-input').classList.add('fail');
         setTimeout(()=>document.querySelector('#search-input').classList.remove('fail'),3000)

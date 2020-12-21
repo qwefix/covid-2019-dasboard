@@ -32,6 +32,7 @@ class CovidTable{
             .then(()=>fetch(`${this.populationApi}`))
             .then(res => {
             if (res.status !== 200) {
+                alert('Упс! Cервер не работает;-(...Попробуйте позже...');
                 return Promise.reject(res);
             }
             return res.json();
@@ -39,7 +40,7 @@ class CovidTable{
                 this.worldData.population=res;
             })
             .then(()=>this.renderData('Global'))
-    };
+    }
     
     renderData(countryName = 'global'){
         this.Country=countryName;
@@ -53,7 +54,7 @@ class CovidTable{
         }else{
             countryObj = this.worldData.Countries.find(a=>a.Country.toLowerCase() === countryName);
             countryObj.population = this.worldData.population.find(a=>a.alpha2Code === countryObj.CountryCode).population;
-        };
+        }
         outputObj.countryName =  countryObj.Country || 'Global';
         if(isAllTime){
             outputObj.cases = countryObj.TotalConfirmed;

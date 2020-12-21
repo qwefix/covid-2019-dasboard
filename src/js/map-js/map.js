@@ -7,7 +7,7 @@ export default function setupMap() {
         minZoom: 2,
         zoom: 3
     }
-
+    var L = window.L;
     const map = new L.map(mapId, mapOptions);
     const layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 

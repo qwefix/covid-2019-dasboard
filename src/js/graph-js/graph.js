@@ -22,6 +22,7 @@ class Graph {
         this.promice = fetch(urls.graphGlobal)
             .then(res => {
                 if (res.status !== 200) {
+                    alert('Упс! Cервер не работает;-(...Попробуйте позже...');
                     return Promise.reject(res);
                 }
                 return res.json();

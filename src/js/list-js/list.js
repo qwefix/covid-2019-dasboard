@@ -17,6 +17,7 @@ class CovidList {
         fetch(`${this.covid2019Api}/summary`)
             .then(res => {
                 if (res.status !== 200) {
+                    alert('Упс! Cервер не работает;-(...Попробуйте позже...');
                     return Promise.reject(res);
                 }
                 return res.json();
@@ -26,7 +27,7 @@ class CovidList {
                this.getListInfo(this.countriesInfo);
             })
            
-    };
+    }
     getListInfo(data) {
         this.cases = data.map(country => [country.Country, country.CountryCode, country.TotalConfirmed]);
         this.deaths = data.map(country => [country.Country, country.CountryCode, country.TotalDeaths]);

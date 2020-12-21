@@ -35,9 +35,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let searchText = 'Global';
             selectCountry(searchText);
         }
-        if (event.target.getAttribute("class") === "autocomplete-items") {
-            closeAllLists(event.target);
-        }
+        
     });
     searchForm.addEventListener('submit', (event) => {
         event.preventDefault();

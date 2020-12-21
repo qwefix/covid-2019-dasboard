@@ -140,7 +140,9 @@ html{
 #list input.fail {
     border: 3px solid red;
 }
-
+.gray {
+    color: gray;
+}
 #list p {
     font-weight: 500;
     font-size: 2.5rem;

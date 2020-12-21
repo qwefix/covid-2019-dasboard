@@ -15,11 +15,15 @@ window.addEventListener('DOMContentLoaded', () => {
     autocompleteCountries();
 
     document.addEventListener('click', (event) => {
+        const checkCountry = document.querySelectorAll('.target-country');
         if (event.target.getAttribute('class') === "target-country") {
+            checkCountry.forEach(item => item.classList.remove('gray'));
+            event.target.classList.add('gray');
             let searchText = event.target.textContent;
             selectCountry(searchText);
         }
         if (event.target.getAttribute('id') === "global-cases") {
+            checkCountry.forEach(item => item.classList.remove('gray'));
             let searchText = 'Global';
             selectCountry(searchText);
         }

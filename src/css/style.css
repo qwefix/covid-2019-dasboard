@@ -437,13 +437,17 @@ footer h2 {
     font-size: 3rem;
 }
 footer .author {
-    width: 7.4rem;
-    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    color: #ffffff;
+    text-decoration: none;
 }
-footer .author img {
-    width: 100%;
+footer .author a {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
 }
-
 
 /* keyboard */
 .wrapper {

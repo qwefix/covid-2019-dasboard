@@ -10,7 +10,7 @@ html{
     min-height: 96vh;
     display: grid;
     grid-template-areas: 
-        'glc  map tbl'
+        'glc  map weath'
         'list map tbl'
         'list map tbl'
         'list map graph'
@@ -24,7 +24,6 @@ html{
 }
 #main section{
     background-color: #333;
-    /* border: solid red .1rem; */
     border-radius: 1rem;
 }
 #head{
@@ -43,6 +42,42 @@ html{
     text-align: center;
     cursor: pointer;
     align-items: center;
+}
+#weather {
+    grid-area: weath;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#weather .city {
+    width: 100%;
+    font-size: 2rem;
+    text-transform: uppercase; 
+    text-align: center;
+}
+
+#weather .temp-block {
+    display: flex;
+    align-items: center;
+}
+
+#weather .temp-block .icon {
+    width: 3rem;
+    height: 3rem;
+}
+#weather .temp-block  .icon img {
+    width: 100%;
+}
+
+
+#weather .city-info,
+#weather .temp-block .temp,
+#weather .humidity,
+#weather .wind {
+    font-size: 1.2rem;
+    border-radius: 8px;
+    color: #fff;
+    text-transform: uppercase;
 }
 #map-section {
     min-width: 60vw;
@@ -103,7 +138,6 @@ html{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    /* padding: 3rem .5rem; */
 }
 #table header{
     font-weight: 500;
@@ -566,7 +600,7 @@ footer .author a {
     }
     #main{
         grid-template-areas: 
-            'glc  map '
+            'glc  weath '
             'list map '
             'tbl  graph'
             'f f'

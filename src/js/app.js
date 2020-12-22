@@ -1,12 +1,11 @@
 import '../css/style.css';
 import setupMap from './map-js/map';
-// import table from './table-js/table';
-// import graph from './graph-js/graph';
 import list from './list-js/list';
 import globalCases from './globalCases-js/globalCases';
 import selectCountry from './selectCountry';
 import autocompleteCountries from './views/autocomplete';
 import keyboard from './views/keyboard';
+import weatherSearch from './weather/weather';
 
 window.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
@@ -17,6 +16,7 @@ window.addEventListener('DOMContentLoaded', () => {
     list.setupListData();
     globalCases.setupGlobalCasesData();
     autocompleteCountries();
+    weatherSearch();
 
     showKeyboard.addEventListener('click', () => {
         const wrapper = document.querySelector('.wrapper');

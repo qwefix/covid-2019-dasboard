@@ -224,7 +224,7 @@ class Keyboard {
         
         wrapper.append(this.keyboardContainer);
         this.keys = this.keyboardContainer.querySelectorAll('.key');
-        document.body.append(this.textarea);
+        
         document.body.appendChild(wrapper);
         this.toggleActive();
     }

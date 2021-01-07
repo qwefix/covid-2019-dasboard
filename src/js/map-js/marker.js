@@ -84,6 +84,7 @@ export default class Marker {
                 });
             })
             .then(() => {this.loadMarker();})
+            .catch(err => console.log(err))
     }
 
     loadOption(number) {

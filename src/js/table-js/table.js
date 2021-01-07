@@ -35,7 +35,7 @@ class CovidTable{
             }))
             .then((res) => this.worldData.population=res)
             .then(()=>this.renderData('Global'))
-            .catch(err => alert(`Упс! Cервер не работает;-(...Попробуйте позже... ${err}`))
+            .catch(err => console.log(err))
     }
     
     renderData(countryName = 'global'){
@@ -69,7 +69,7 @@ class CovidTable{
         this.renderInTable(outputObj)   
     }
     promiceRender(country){
-        this.promice.then(()=>this.renderData(country))
+        this.promice.then(()=>this.renderData(country)).catch(err => console.log(err))
     }
     renderInTable(obj){
         this.table.countryName.textContent = obj.countryName;

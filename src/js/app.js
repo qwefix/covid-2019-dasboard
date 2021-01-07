@@ -16,6 +16,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
     function sendRequest(url) {
         return fetch(url).then(res => {
+            if (res.status !== 200) {
+                alert('Упс! Cервер не работает;-(...Попробуйте позже...');
+                return Promise.reject(res);
+            }
             return res.json();
         })
     

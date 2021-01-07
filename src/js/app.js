@@ -1,7 +1,9 @@
 import '../css/style.css';
+import urls from './apiUrlConfig/apiUrl';
 import setupMap from './map-js/map';
 import list from './list-js/list';
-import globalCases from './globalCases-js/globalCases';
+import global from './globalCases-js/globalCases';
+import table from './table-js/table';
 import selectCountry from './selectCountry';
 import autocompleteCountries from './views/autocomplete';
 import keyboard from './views/keyboard';
@@ -11,11 +13,23 @@ window.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchForm = document.getElementById('search-form');
     const showKeyboard = document.querySelector('.keyboard-show');
+
+    function sendRequest(url) {
+        return fetch(url).then(res => {
+            return res.json();
+        })
+    
+    }
+    sendRequest(`${urls.covid19api}/summary`)
+        .then(data => {
+            list.getListInfo(data);
+            global.getGlobalInfo(data);
+            table.setupTableData(data);
+            autocompleteCountries(data);
+        })
+        .catch(err => console.log(err))
    
     keyboard.init();
-    list.setupListData();
-    globalCases.setupGlobalCasesData();
-    autocompleteCountries();
     weatherSearch();
 
     showKeyboard.addEventListener('click', () => {

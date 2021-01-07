@@ -1,37 +1,19 @@
-import urls from '../apiUrlConfig/apiUrl';
 import Slider from '../views/slider';
 const slider = new Slider('.slides-wrapper', '.slide', '.arrow-left', '.arrow-right', '.current', '.total');
 slider.render();
 
 class CovidList {
-    constructor(slider, apiUrls) {
+    constructor(slider) {
         this.slider = slider;
         this.listParagraph = document.querySelectorAll('#list p');
         this.tbody = document.querySelectorAll('.tbody');
-        this.covid2019Api  = apiUrls.covid19api;
         this.slider.render();
         this.countriesInfo = [];
     }
-    
-    setupListData() {
-        fetch(`${this.covid2019Api}/summary`)
-            .then(res => {
-                if (res.status !== 200) {
-                    alert('Упс! Cервер не работает;-(...Попробуйте позже...');
-                    return Promise.reject(res);
-                }
-                return res.json();
-            })
-            .then((res) => {
-               this.countriesInfo = res.Countries;
-               this.getListInfo(this.countriesInfo);
-            })
-           
-    }
     getListInfo(data) {
-        this.cases = data.map(country => [country.Country, country.CountryCode, country.TotalConfirmed]);
-        this.deaths = data.map(country => [country.Country, country.CountryCode, country.TotalDeaths]);
-        this.recover = data.map(country => [country.Country, country.CountryCode, country.TotalRecovered]);
+        this.cases = data.Countries.map(country => [country.Country, country.CountryCode, country.TotalConfirmed]);
+        this.deaths = data.Countries.map(country => [country.Country, country.CountryCode, country.TotalDeaths]);
+        this.recover = data.Countries.map(country => [country.Country, country.CountryCode, country.TotalRecovered]);
         this.listParagraph.forEach(p => {
             switch(p.textContent) {
                 case 'Cases':
@@ -79,5 +61,5 @@ class CovidList {
     }
 }
 
-const list = new CovidList(slider, urls);
+const list = new CovidList(slider);
 export default list;

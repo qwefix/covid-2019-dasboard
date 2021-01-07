@@ -18,28 +18,24 @@ class CovidTable{
             this.promiceRender(this.Country);
         })) 
     }
-    setupTableData() {
-        this.promice = fetch(`${this.covid2019Api}/summary`)
-            .then(res => {
+    setupTableData(data) {
+        this.worldData=data;
+        if (data) {
+            this.setupPopulation()
+        }
+    }
+    setupPopulation() {
+        this.promice = fetch(`${this.populationApi}`)
+            .then((res => {
                 if (res.status !== 200) {
-                    return Promise.reject(res);
-                }
-                return res.json();
-            })
-            .then((res) => {
-                this.worldData=res;
-            })
-            .then(()=>fetch(`${this.populationApi}`))
-            .then(res => {
-            if (res.status !== 200) {
-                alert('Упс! Cервер не работает;-(...Попробуйте позже...');
-                return Promise.reject(res);
-            }
-            return res.json();
-            }).then((res) => {
-                this.worldData.population=res;
-            })
+                            alert('Упс! Cервер не работает;-(...Попробуйте позже...');
+                            return Promise.reject(res);
+                        }
+                        return res.json();
+            }))
+            .then((res) => this.worldData.population=res)
             .then(()=>this.renderData('Global'))
+            .catch(err => alert(`Упс! Cервер не работает;-(...Попробуйте позже... ${err}`))
     }
     
     renderData(countryName = 'global'){

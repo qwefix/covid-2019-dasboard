@@ -13,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const searchInput = document.getElementById('search-input');
     const searchForm = document.getElementById('search-form');
     const showKeyboard = document.querySelector('.keyboard-show');
+    const globalCaseWord = 'Global';
 
     function sendRequest(url) {
         return fetch(url).then(res => {
@@ -50,7 +51,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         if (event.target.getAttribute('id') === "global-cases") {
             checkCountry.forEach(item => item.classList.remove('gray'));
-            let searchText = 'Global';
+            let searchText = globalCaseWord;
             selectCountry(searchText);
         }
         

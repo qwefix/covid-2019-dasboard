@@ -1,7 +1,7 @@
 import Marker from './marker';
 
 export default function setupMap() {
-    const mapId = document.querySelector('#map');
+    const mapId = document.getElementById('map');
     const mapOptions = {
         center: [32.526955973553164, 23.047893209259385],
         minZoom: 2,
@@ -15,16 +15,11 @@ export default function setupMap() {
     
     const marker = new Marker(map);
     const button = document.querySelectorAll('.map-button');
-    
-    button[0].addEventListener('click', () => {
-        marker.loadOption(0);
-    });
-    button[1].addEventListener('click', () => {
-        marker.loadOption(1);
-    });
-    button[2].addEventListener('click', () => {
-        marker.loadOption(2);
-    });
+    button.forEach((item, i ) => {
+        item.addEventListener('click', () => {
+            marker.loadOption(i);
+        });
+    })
 
     document.addEventListener('click', (event) => {
         if (event.target.getAttribute('class') === "target-country") {

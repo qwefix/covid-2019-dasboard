@@ -22,6 +22,7 @@ class Graph {
         this.promice = fetch(urls.graphGlobal)
             .then(res => {
                 if (res.status !== 200) {
+                    alert('Упс! Cервер не работает;-(...Попробуйте позже...');
                     return Promise.reject(res);
                 }
                 return res.json();
@@ -56,7 +57,10 @@ class Graph {
         this.chart.update();
     }
     render(inputName=this.lastCountry){
-        const countryName = inputName.toLowerCase().split(' ').filter(v=>v!=='').map(v=>v.trim()).join('-');
+        let countryName = inputName.toLowerCase().split(' ').filter(v=>v!=='').map(v=>v.trim()).join('-');
+        if(countryName =='united-states-of-america'){
+            countryName = 'united-states'
+        }
         if(countryName === 'global'){
             this.renderGlobal()
         }else{

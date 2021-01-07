@@ -9,13 +9,12 @@ html{
 #main{
     min-height: 96vh;
     display: grid;
-    grid-template-columns: 1fr 3fr 1.7fr;
-    grid-template-rows: 1fr 2fr 3fr 4fr;
     grid-template-areas: 
-        'head head head'
-        'glc  map tbl'
+        'glc  map weath'
+        'list map tbl'
         'list map tbl'
         'list map graph'
+        'f f f'
     ;
     gap: 1rem;
     background-color: #000;
@@ -24,8 +23,7 @@ html{
 
 }
 #main section{
-    background-color: #666;
-    border: solid red .1rem;
+    background-color: #333;
     border-radius: 1rem;
 }
 #head{
@@ -36,20 +34,114 @@ html{
 }
 #global-cases{
     grid-area: glc;
+    width: 100%;
+    color:rgb(223, 60, 60);
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 2px black, 0 0 1px black;
+    text-align: center;
+    cursor: pointer;
+    align-items: center;
 }
-#map{
+#weather {
+    grid-area: weath;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#weather .city {
+    width: 100%;
+    font-size: 2rem;
+    text-transform: uppercase; 
+    text-align: center;
+}
+
+#weather .temp-block {
+    display: flex;
+    align-items: center;
+}
+
+#weather .temp-block .icon {
+    width: 3rem;
+    height: 3rem;
+}
+#weather .temp-block  .icon img {
+    width: 100%;
+}
+
+
+#weather .city-info,
+#weather .temp-block .temp,
+#weather .humidity,
+#weather .wind {
+    font-size: 1.2rem;
+    border-radius: 8px;
+    color: #fff;
+    text-transform: uppercase;
+}
+#map-section {
+    min-width: 60vw;
     grid-area: map;
 }
-#main #table{
+#map{
+    min-width: 60vw;
+    height: 95%;
+    color: #666;
+}
+.map-navigation{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+}
+.popup {
+    display: none;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: #222;
+    right: 0;
+    bottom: 0;
+    padding: 0 2rem;
+    border-radius: 1rem;
+    height: 100%;
+    z-index: 5;
+}
+.popup-country {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-right: 2rem;
+}
+.popup-content {
+    font-size: 1.5rem;
+}
+.buttonList {
+    display: flex;
+    margin-left: 1rem;
+    z-index: 5;
+}
+.buttonList>.map-button {
+    background: rgb(38, 38, 38);
+    color: #fff;
+    font-size: 1.5rem;
+    border: none;
+    outline: none;
+    margin: 1rem;
+}
+.buttonList>.map-button:hover {
+    background: rgb(67, 67, 67);
+}
+#table{
     grid-area: tbl;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 3rem .5rem;
+    justify-content: space-around;
 }
 #table header{
     font-weight: 500;
-    font-size: 3.5rem;
+    font-size: 5rem;
     display: flex;
     text-align: center;
     justify-content: center;
@@ -57,20 +149,25 @@ html{
 }
 #table th {
     font-weight: 500;
-    font-size: 2rem;
+    font-size: 3rem;
     text-align: center;
 }
 #table td {
-    width: 33%;
     font-weight: 600;
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-align: center;
+}
+
+#table td.cases{
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #table td.deaths{
     color: red;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #table td.rec{
     color: rgb(5, 223, 5);
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #table .settings{
     display: flex;
@@ -111,12 +208,12 @@ html{
     width: 8rem;
 }
 #list{
+    min-width: 13vw;
     grid-area: list;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 #list input {
     border-radius: 1rem;
     border: 1px solid #ddd;
@@ -125,10 +222,14 @@ html{
     width: 90%;
     margin: 0 auto;
 }
-
-
+#list input.fail {
+    border: 3px solid red;
+}
+.gray {
+    color: gray;
+}
 #list p {
-  font-weight: 500;
+    font-weight: 500;
     font-size: 2.5rem;
     text-align: center;
 }
@@ -141,37 +242,121 @@ html{
     font-weight: 500;
     font-size: 1.8rem;
     text-align: center;
-    min-width: 10rem;
     padding: 0.5rem;
 }
 
 #list td {
+    min-width: 1rem;
     font-weight: 600;
     font-size: 1.5rem;
     text-align: center;
     padding: 0.5rem;
     border-bottom: 1px solid #d6d6d6;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 #list td.deaths{
     color: red;
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 
 #list td.rec{
     color: rgb(5, 223, 5);
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
 }
 
+#list td.cases{
+    text-shadow: 1px 1px 1px black, 0 0 1px black;
+}
+
+#list .target-country {
+    cursor: pointer;
+}
+#list .target-country:hover {
+    background-color: rgb(51, 51, 51, 0.3);
+    border-bottom: 1px solid grey;
+}
 
 #list .slider {
     display: flex;
     flex-direction: column;
 }
 
+
+#list .slide::-webkit-scrollbar,
+#list .autocomplete-items::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+#list .slide::-webkit-scrollbar-track,
+#list .autocomplete-items::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+#list .slide::-webkit-scrollbar-thumb,
+#list .autocomplete-items::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+#list .slides-wrapper{    
+    max-height: 58vh;
+}
 #list .slides-wrapper .slide {
+    overflow-y: scroll;
+    max-height: 98%;
     margin: 1rem auto;
     transition: 2s ease-in-out;
 }
 
+#list .autocomplete {
+    position: relative;
+}
 
+#list .autocomplete .search-button {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: .2rem;
+    right: 3rem;
+    background-color:#fff;
+    color: #fff;
+    cursor: pointer;
+    border:none;
+    outline: none;
+}
+
+#list .autocomplete .keyboard-show svg,
+#list .autocomplete .search-button {
+    fill: gray;
+}
+
+#list .autocomplete .keyboard-show {
+    width: 3rem;
+    height: 3rem;
+    position: absolute;
+    top: .2rem;
+    right: 0rem;
+    background-color: #fff;
+    cursor: pointer;
+    border:none;
+    outline: none;
+}
+
+#list .autocomplete-items {
+    font-size: 1.6rem;
+    background-color: gray;
+    cursor: pointer;
+    overflow-y: scroll;
+    max-height: 30rem;
+    position: absolute;
+}
+#list .autocomplete-items div {
+    padding: 5px;
+    border: 1px solid #fff;
+    min-width: 15rem;
+}
 
 #list .navigation {
     display: flex;
@@ -179,18 +364,20 @@ html{
     align-items:center;
 }
 
-#list button {
+#list .arrow-left,
+#list .arrow-right {
     color: #000;
     background-color: transparent;
-    width: 30px;
-    height: 30px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     border: none;
     outline: none;
     cursor: pointer;
 }
 
-#list button:hover {
+#list .arrow-left:hover,
+#list .arrow-right:hover {
     background-color: gray;
 }
 
@@ -199,12 +386,14 @@ html{
     font-size: 1.5rem;
 }
 
+
 #graph{
     padding: .5rem;
     max-height: 500px;
     grid-area: graph;
 }
 #graph canvas{
+    margin: 1rem auto 0;
     background-color: #ddd;
     height: 80px;
 }
@@ -261,4 +450,163 @@ html{
 }
 #graph .slider-bg.deaths{
     justify-content: center;
+}
+
+footer {
+    grid-area: f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .logo-rss {
+    width: 7.4rem;
+    height: 3.1rem;
+    background-color: #fff;
+}
+footer .logo-rss  img{
+    width: 100%;
+}
+footer h2 {
+    font-size: 3rem;
+}
+footer .author {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+footer .author a {
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* keyboard */
+.wrapper {
+    z-index: 1000000000000000000;
+    width: 90rem;
+    height: 60rem;
+    margin: 2rem auto;
+    transition: 2s ease;
+    position: absolute;
+    top: 31%;
+    left: 0;
+}
+
+.wrapper-hidden {
+    margin-left: -150%;
+    transition: 2s ease;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    width: 94%;
+    padding: 3%;
+    height: 30rem;
+    border-radius: 3rem;
+    background-color: rgb(218, 216, 216);
+}
+
+.key-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 4.5rem;
+}
+
+
+.key {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 4.5rem;
+    width: 4.5rem;
+    margin: 3px;
+    border-radius: .4rem;
+    border: none;
+    font-size: 1.5rem;
+    color: #ffffff;
+    background: rgb(0, 0, 0, 0.75);
+    outline: none;
+    cursor: pointer;
+}
+
+.wide {
+    width: 10rem;
+    width: 11.5%;
+}
+
+.extra-wide {
+    width: 74%;
+}
+
+.shift-left {
+    width: 16rem;
+    width: 18.5%;
+}
+
+.key-activable::after {
+    content: '';
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    width: .8rem;
+    height: .8rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+}
+  
+.key-active::after {
+    background: #08ff00;
+}
+
+
+.active {
+    background-color: rgb(34, 160, 177);
+    border-radius: 1.5rem;
+    transition: all 100ms linear;
+}
+
+
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        max-width: 90rem;
+        width: 90%;
+        max-height: 50rem;
+        height: 60%;
+    }
+    .keyboard-img {
+        width: 15%;
+        height: 15%;
+    }
+}
+@media screen and (max-width: 1400px) {
+    html{
+        font-size: 7px;
+    }
+   
+}
+@media screen and (max-width: 1024px) {
+    html{
+        font-size: 6px;
+    }
+    #main{
+        grid-template-areas: 
+            'glc  weath '
+            'list map '
+            'tbl  graph'
+            'f f'
+        ;
+    }
+    #list .slides-wrapper{    
+        overflow-y: scroll;
+    }
 }

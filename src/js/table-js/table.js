@@ -1,7 +1,3 @@
-// https://api.covid19api.com/world
-//https://api.covid19api.com/dayone/country/south-africa
-//https://api.covid19api.com/summary
-
 import tableSwitchers from './switches';
 import urls from '../apiUrlConfig/apiUrl';
 class CovidTable{
@@ -22,44 +18,40 @@ class CovidTable{
             this.promiceRender(this.Country);
         })) 
     }
-    setupTableData() {
-        this.promice = fetch(`${this.covid2019Api}/summary`)
-            .then(res => {
+    setupTableData(data) {
+        this.worldData=data;
+        if (data) {
+            this.setupPopulation()
+        }
+    }
+    setupPopulation() {
+        this.promice = fetch(`${this.populationApi}`)
+            .then((res => {
                 if (res.status !== 200) {
-                    return Promise.reject(res);
-                }
-                return res.json();
-            })
-            .then((res) => {
-                this.worldData=res;
-            })
-            .then(()=>fetch(`${this.populationApi}`))
-            .then(res => {
-            if (res.status !== 200) {
-                return Promise.reject(res);
-            }
-            return res.json();
-            }).then((res) => {
-                this.worldData.population=res;
-            })
+                            alert('Упс! Cервер не работает;-(...Попробуйте позже...');
+                            return Promise.reject(res);
+                        }
+                        return res.json();
+            }))
+            .then((res) => this.worldData.population=res)
             .then(()=>this.renderData('Global'))
-    };
+            .catch(err => console.log(err))
+    }
     
-    renderData(countryName='Global'){
+    renderData(countryName = 'global'){
         this.Country=countryName;
         let countryObj={};
         let isAllTime = this.switches.tableSwitchesPositions.allTime;
         let isAbsolute = this.switches.tableSwitchesPositions.absolute;
         let outputObj ={};
-        if(countryName==='Global'){
-            console.log
+        if(countryName.toLowerCase() === 'global'){
             countryObj=this.worldData.Global;
             countryObj.population = 7000000000;
         }else{
-            countryObj = this.worldData.Countries.find(a=>a.Country === countryName);
+            countryObj = this.worldData.Countries.find(a=>a.Country.toLowerCase() === countryName);
             countryObj.population = this.worldData.population.find(a=>a.alpha2Code === countryObj.CountryCode).population;
-        };
-        outputObj.countryName = countryName;
+        }
+        outputObj.countryName =  countryObj.Country || 'Global';
         if(isAllTime){
             outputObj.cases = countryObj.TotalConfirmed;
             outputObj.rec = countryObj.TotalRecovered;
@@ -77,20 +69,27 @@ class CovidTable{
         this.renderInTable(outputObj)   
     }
     promiceRender(country){
-        this.promice.then(()=>this.renderData(country))
+        this.promice.then(()=>this.renderData(country)).catch(err => console.log(err))
     }
     renderInTable(obj){
         this.table.countryName.textContent = obj.countryName;
-        this.table.cases.textContent = this.prettyNumber(obj.cases);
-        this.table.deaths.textContent = this.prettyNumber(obj.deaths);
-        this.table.rec.textContent = this.prettyNumber(obj.rec);
+        this.table.cases.textContent = this.round(obj.cases);
+        this.table.deaths.textContent = this.round(obj.deaths);
+        this.table.rec.textContent = this.round(obj.rec);
+    }
+    round(num){
+        return Math.round(num*10)/10
+    }
+    checkCountryName(name){
+        if(this.worldData.Countries.find(v=>v.Country.toLowerCase() === name || name === 'global') === undefined) return false;
+        return true
     }
     prettyNumber(number){
         let divider={
             num:1,
             str:'',
         }
-        if(number>9999999){
+        if(number>999999){
             divider={
                 num:1000000,
                 str:'M',
@@ -101,7 +100,6 @@ class CovidTable{
                 str:'K'
             }
         }
-
         return Math.round(number/divider.num*10)/10 + divider.str
     }
 }
